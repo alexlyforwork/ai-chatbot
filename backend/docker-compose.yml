@@ -1,0 +1,7 @@
+
+services:
+  chatbot_backend:
+    build: .
+    ports:
+      - "3000:3000"
+    
