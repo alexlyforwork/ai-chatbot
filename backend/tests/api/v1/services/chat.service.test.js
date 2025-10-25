@@ -9,17 +9,11 @@ describe('Chat Service', () => {
     });
     describe('Chat Service - createChat', () => {
         it('should create chat successfully', async () => {
-            jest.spyOn(Chat.prototype, 'save').mockResolvedValue({
-                title: MOCK_CHAT.title,
-                userId: MOCK_CHAT.userId
-            });
+            jest.spyOn(Chat.prototype, 'save').mockResolvedValue(MOCK_CHAT)
 
             const newChat = await ChatService.createChat(MOCK_CHAT.title, MOCK_CHAT.userId);
-            const { title, userId } = newChat.data;
-
-           expect(title).toBe(MOCK_CHAT.title);
-           expect(userId.toString()).toBe(MOCK_CHAT.userId);
-           expect(newChat.status).toBe('SUCCESS');
+            
+            expect(newChat).toEqual(MOCK_CHAT)
         });
     })
     describe('Chat Service - getAllChatsByUserId', () => {
@@ -27,15 +21,14 @@ describe('Chat Service', () => {
             jest.spyOn(Chat, 'find').mockResolvedValue(MOCK_CHAT_LIST);
 
             const chats = await ChatService.getAllChatsByUserId(MOCK_CHAT_LIST[0].userId);
-            expect(chats.data).toMatchObject(MOCK_CHAT_LIST)
-            expect(chats.status).toBe('SUCCESS');
+            expect(chats).toEqual(MOCK_CHAT_LIST)
         })
     })
-    describe('Chat Service - deleteChatById', () => {
-        it('should delete chat successfully', async () => {
-            jest.spyOn(Chat, 'findByIdAndDelete').mockResolvedValue(status = 'SUCCESS');
-            const res = await ChatService.deleteChatById(MOCK_CHAT._id);
-            expect(res.status).toBe('SUCCESS');
+    describe('Chat Service - getChatById', () => {
+        it('should return chat successfully', async () => {
+            jest.spyOn(Chat, 'findById').mockResolvedValue(MOCK_CHAT);
+            const chat = await ChatService.getChatById(MOCK_CHAT._id);
+            expect(chat).toEqual(MOCK_CHAT);
         })
     })
 })

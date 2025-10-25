@@ -3,9 +3,9 @@ import Chat from "../../../models/chat";
 class ChatService {
   async createChat(title, userId) {
     try {
-      const newChat = new Chat({ title, userId });
+      const newChat = new Chat({ title, userId});
       await newChat.save();
-      return { status: 'SUCCESS', data: newChat };
+      return newChat
     } catch (error) {
       throw error;
     }
@@ -13,7 +13,15 @@ class ChatService {
   async getAllChatsByUserId(userId) {
     try {
       const chats = await Chat.find({ userId: userId });
-      return { status: 'SUCCESS', data: chats };
+      return chats
+    } catch (error) {
+      throw error;
+    }
+  }
+  async getChatById(chatId) {
+    try {
+      const chat = await Chat.findById(chatId);
+      return chat
     } catch (error) {
       throw error;
     }
@@ -21,7 +29,6 @@ class ChatService {
   async deleteChatById(chatId) {
     try {
       await Chat.findByIdAndDelete(chatId);
-      return { status: 'SUCCESS' };
     } catch (error) {
       throw error;
     }

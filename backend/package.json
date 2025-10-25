@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon ./src/server.js",
     "format:prettier": "prettier --write \"src/**/*.js\"",
-    "test": "jest"
+    "test": "jest --config ./config/jest.config.cjs "
   },
   "keywords": [],
   "author": "",
