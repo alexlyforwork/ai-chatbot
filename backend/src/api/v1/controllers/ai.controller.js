@@ -1,7 +1,7 @@
 import AIService from "../services/ai.service.js";
 
 class AIController {
-   async getAIResponse(req, res) {
+  async getAIResponse(req, res) {
     try {
       const { message } = req.body;
       const aiResponse = await AIService.getAIResponse(message);

@@ -1,11 +1,11 @@
-import Chat from "../../../models/chat";
+import Chat from "../../../models/chat.js";
 
 class ChatService {
   async createChat(title, userId) {
     try {
-      const newChat = new Chat({ title, userId});
+      const newChat = new Chat({ title, userId });
       await newChat.save();
-      return newChat
+      return newChat;
     } catch (error) {
       throw error;
     }
@@ -13,7 +13,7 @@ class ChatService {
   async getAllChatsByUserId(userId) {
     try {
       const chats = await Chat.find({ userId: userId });
-      return chats
+      return chats;
     } catch (error) {
       throw error;
     }
@@ -21,7 +21,7 @@ class ChatService {
   async getChatById(chatId) {
     try {
       const chat = await Chat.findById(chatId);
-      return chat
+      return chat;
     } catch (error) {
       throw error;
     }

@@ -1,17 +1,23 @@
-import Message from "../../../models/message";
+import Message from "../../../models/message.js";
 
 class MessageService {
-  async getMessagesByChatId (chatId) {
+  async getMessagesByChatId(chatId) {
     try {
-        const messages = await Message.find({chatId: chatId})
-        return messages;
+      const messages = await Message.find({ chatId: chatId });
+      return messages;
     } catch (error) {
-        throw error;
+      throw error;
     }
   }
-  async saveMessage (message) {
+  async saveMessage(role, chatId, message) {
     try {
-      const newMessage = new Message(message);
+      const newMessage = new Message({
+        role: role,
+        chatId: chatId,
+        content: message
+      });
+      console.log(newMessage)
+      console.log("Saving message with chatId:", chatId);
       await newMessage.save();
       return newMessage;
     } catch (error) {

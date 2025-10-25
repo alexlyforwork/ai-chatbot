@@ -26,7 +26,17 @@ function promptUser() {
         "http://localhost:3000/api/v1/ai/response",
         { message: msg }
       );
+      await axios.post('http://localhost:3000/api/v1/message/',{
+        role: "Human",
+        chatId:"68fd3f14ff481d75d2e4d1c8",
+        message: msg
+      })
       console.log("AI:", data.response);
+      await axios.post('http://localhost:3000/api/v1/message/',{
+        role: "AI",
+        chatId:"68fd3f14ff481d75d2e4d1c8",
+        message: data.response
+      })
     } catch (err) {
       console.error("\nError getting AI response:", err.message);
     }
