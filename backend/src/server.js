@@ -4,7 +4,6 @@ import { createServer } from "node:http";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import AIService from "./api/v1/services/ai.service.js";
-import axios from "axios";
 
 dotenv.config();
 
@@ -21,11 +20,6 @@ mongoose
 
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
-  socket.on('chatMessage', (msg) => {
-    console.log('Message received:', msg);
-    const aiResponse = AIService.getAIResponse(msg.message);
-    socket.emit('chatResponse', { user: 'AI', message: aiResponse });
-  });
 });
 
 server.listen(port, () => {
