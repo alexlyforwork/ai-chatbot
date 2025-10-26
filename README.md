@@ -20,7 +20,7 @@ Built with **Node.js**, **Express**, and **Socket.io** for real-time messaging.
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/<your-repo>.git
+git clone https://github.com/alexlyforwork/ai-chatbot.git
 cd backend
 ```
 
