@@ -12,8 +12,12 @@ class MessageController {
   }
   async saveMessage(req, res) {
     try {
-      const {role, chatId, message} = req.body;
-      const savedMessage = await MessageService.saveMessage(role, chatId, message);
+      const { role, chatId, message } = req.body;
+      const savedMessage = await MessageService.saveMessage(
+        role,
+        chatId,
+        message,
+      );
       res.status(200).json({ message: savedMessage });
     } catch (error) {
       res.status(500).json({ error: "Failed to save message" });

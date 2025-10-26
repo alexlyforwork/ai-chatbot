@@ -6,8 +6,8 @@ class ChatService {
     try {
       const newChat = new Chat({ title, userId });
       await newChat.save();
-      const chatId = newChat._id
-      await redis.set('chatId:', chatId.toString(), "EX", 600);
+      const chatId = newChat._id;
+      await redis.set("chatId:", chatId.toString(), "EX", 600);
       return chatId;
     } catch (error) {
       throw error;

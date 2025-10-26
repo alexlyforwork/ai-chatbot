@@ -4,7 +4,7 @@ class MessageService {
   async getMessagesByChatId(chatId) {
     try {
       const messages = await Message.find({ chatId: chatId });
-      console.log(messages)
+      console.log(messages);
       return messages;
     } catch (error) {
       throw error;
@@ -15,9 +15,9 @@ class MessageService {
       const newMessage = new Message({
         role: role,
         chatId: chatId,
-        content: message
+        content: message,
       });
-      console.log(newMessage)
+      console.log(newMessage);
       console.log("Saving message with chatId:", chatId);
       await newMessage.save();
       return newMessage;

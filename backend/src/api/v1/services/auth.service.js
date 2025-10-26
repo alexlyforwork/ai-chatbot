@@ -19,7 +19,7 @@ class AuthService {
         email,
         password,
       );
-      await UserService.createUser(name,email)
+      await UserService.createUser(name, email);
       return userCredential.user;
     } catch (error) {
       throw new Error(error.message);
@@ -35,22 +35,21 @@ class AuthService {
       );
       const idToken = await userCredential.user.getIdToken();
       await redis.set(`idToken:`, idToken, "EX", 3600);
-      return {user: userCredential.user, idToken};
+      return { user: userCredential.user, idToken };
     } catch (error) {
       throw new Error(error.message);
     }
   }
 
-  async getUserFromSession (){
-
-    const idToken = await redis.get(`idToken:`)
+  async getUserFromSession() {
+    const idToken = await redis.get(`idToken:`);
     if (!idToken) {
-    throw new Error("Session expired or not found");
+      throw new Error("Session expired or not found");
     }
-    const decodedToken = await admin.auth().verifyIdToken(idToken)
-    const email = decodedToken.email
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    const email = decodedToken.email;
     const userId = (await UserService.getUserByEmail(email))._id;
-    return {userId}
+    return { userId };
   }
 
   async userLogout() {

@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.use("/ai", AIRouter);
 router.use("/message", MessageRouter);
-router.use("/chat", ChatRouter)
-router.use("/auth", AuthRouter)
+router.use("/chat", ChatRouter);
+router.use("/auth", AuthRouter);
 
 export { router };
