@@ -1,7 +1,11 @@
 
 services:
-  chatbot_backend:
-    build: .
+  # chatbot_backend:
+  #   build: .
+  #   ports:
+  #     - "3000:3000"
+  chatbot_redis:
+    image: redis:latest
+    container_name: redis
     ports:
-      - "3000:3000"
-    
+      - "6379:6379"  

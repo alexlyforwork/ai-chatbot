@@ -1,11 +1,13 @@
 import ChatService from "../services/chat.service.js";
+import AuthService from "../services/auth.service.js";
 
 class ChatController {
   async createChat(req,res){
     try {
-        const {title, userId} = req.body;
-        const chat = await ChatService.createChat(title,userId)
-        res.status(200).json({chat : chat})
+        const title = req.body.title;
+        const {userId} = await AuthService.getUserFromSession();
+        const chatId = await ChatService.createChat(title,userId.toString())
+        res.status(200).json({chatId : chatId})
     } catch (error) {
         res.status(500).json({error: "Failed to save chat"});
     }

@@ -1,11 +1,14 @@
 import Chat from "../../../models/chat.js";
+import redis from "../../../../config/redis.js";
 
 class ChatService {
   async createChat(title, userId) {
     try {
       const newChat = new Chat({ title, userId });
       await newChat.save();
-      return newChat;
+      const chatId = newChat._id
+      await redis.set('chatId:', chatId.toString(), "EX", 600);
+      return chatId;
     } catch (error) {
       throw error;
     }

@@ -4,6 +4,7 @@ class MessageService {
   async getMessagesByChatId(chatId) {
     try {
       const messages = await Message.find({ chatId: chatId });
+      console.log(messages)
       return messages;
     } catch (error) {
       throw error;

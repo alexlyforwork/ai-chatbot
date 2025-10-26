@@ -13,7 +13,7 @@ AuthRouter.post("/signup", async (req, res, next) => {
 
 AuthRouter.post("/login", async (req, res, next) => {
   try {
-    await AuthController.userSignUp(req,res)
+    await AuthController.userLogin(req,res)
   } catch (error) {
     next(error);
   }
